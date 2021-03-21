@@ -1,0 +1,208 @@
+**** instaliranje gita preko terminala ****
+sudo apt install git-all
+
+**** za debian distribucije treba i ovaj paket ****
+$ sudo apt-get install install-info
+// upitno sta je to
+
+**** početna konfiguracija samog gita tj usera
+LINK: https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
+
+┌──(svale㉿DESKTOP-3I41N36)-[~]
+└─$ git config --global user.email nikolasvalina001@gmail.com                                                                                                   129 ⨯
+
+┌──(svale㉿DESKTOP-3I41N36)-[~]
+└─$ git config --global user.name="Nikola Svalina"
+error: invalid key: user.name=Nikola Svalina
+
+┌──(svale㉿DESKTOP-3I41N36)-[~]
+└─$ git config --global user.name "Nikola Svalina"                                                                                                                1 ⨯
+
+┌──(svale㉿DESKTOP-3I41N36)-[~]
+└─$ git config --list
+user.email=nikolasvalina001@gmail.com
+user.name=Nikola Svalina
+└─$ git config --global core.editor atom
+
+**** primjer commitanja i pushanja ****
+LINK: https://github.com/git-guides/git-commit
+
+┌──(svale㉿DESKTOP-3I41N36)-[~/.git/Github_Projekti/W3Schools_Exercises]
+└─$ git add welcome.txt
+
+┌──(svale㉿DESKTOP-3I41N36)-[~/.git/Github_Projekti/W3Schools_Exercises]
+└─$ git commit -m "Adds initial greeting file"
+[main 4d669da] Adds initial greeting file
+ 1 file changed, 4 insertions(+)
+ create mode 100644 welcome.txt
+
+┌──(svale㉿DESKTOP-3I41N36)-[~/.git/Github_Projekti/W3Schools_Exercises]
+└─$ git push
+Username for 'https://github.com': nsvali00
+Password for 'https://nsvali00@github.com':
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 411 bytes | 205.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/nsvali00/W3Schools_Exercises.git
+   672d97f..4d669da  main -> main
+
+┌──(svale㉿DESKTOP-3I41N36)-[~/.git/Github_Projekti/W3Schools_Exercises]
+└─$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+
+
+
+************* MALA DIGRESIJA
+// prvo i drugo pullanje obavijest
+──(svale㉿DESKTOP-3I41N36)-[~/.git/Github_Projekti/W3Schools_Exercises]
+└─$ git pull
+hint: Pulling without specifying how to reconcile divergent branches is
+hint: discouraged. You can squelch this message by running one of the following
+hint: commands sometime before your next pull:
+hint:
+hint:   git config pull.rebase false  # merge (the default strategy)
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+hint:
+hint: You can replace "git config" with "git config --global" to set a default
+hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+hint: or --ff-only on the command line to override the configured default per
+hint: invocation.
+Already up to date.
+──(svale㉿DESKTOP-3I41N36)-[~/.git/Github_Projekti/W3Schools_Exercises]
+└─$ git config pull.rebase false
+
+// provjerit ove tri komande koja je razlika
+
+**** izgled git configa nakon setupa svega ****
+┌──(svale㉿DESKTOP-3I41N36)-[~/.git/Github_Projekti/W3Schools_Exercises]
+└─$ git config --list
+user.email=nikolasvalina001@gmail.com
+user.name=Nikola Svalina
+core.editor=atom
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+remote.origin.url=https://github.com/nsvali00/W3Schools_Exercises.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+branch.main.remote=origin
+branch.main.merge=refs/heads/main
+pull.rebase=false
+
+**** amendanje ****
+LINK: https://www.atlassian.com/git/tutorials/rewriting-history
+┌──(svale㉿DESKTOP-3I41N36)-[~/.git/Github_Projekti/W3Schools_Exercises]
+└─$ git add welcome.txt
+
+┌──(svale㉿DESKTOP-3I41N36)-[~/.git/Github_Projekti/W3Schools_Exercises]
+└─$ git commit --amend -m "testing amend"
+[main e20211b] testing amend
+ Date: Sun Mar 21 18:27:39 2021 +0100
+
+┌──(svale㉿DESKTOP-3I41N36)-[~/.git/Github_Projekti/W3Schools_Exercises]
+└─$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+**** kreiranje nove grane i prelazak na nju ****
+LINK: https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
+┌──(svale㉿DESKTOP-3I41N36)-[~/.git/Github_Projekti/W3Schools_Exercises]
+└─$  git checkout -b training
+Switched to a new branch 'training'
+
+**** kreiranje filea i pushanje na tu granu ****
+
+──(svale㉿DESKTOP-3I41N36)-[~/.git/Github_Projekti/W3Schools_Exercises]
+└─$ vim training.txt
+
+┌──(svale㉿DESKTOP-3I41N36)-[~/.git/Github_Projekti/W3Schools_Exercises]
+└─$ git add training.txt
+
+┌──(svale㉿DESKTOP-3I41N36)-[~/.git/Github_Projekti/W3Schools_Exercises]
+└─$ git commit -m "Dummy training text file"
+[training 61c6b0a] Dummy training text file
+ 1 file changed, 1 insertion(+)
+ create mode 100644 training.txt
+
+┌──(svale㉿DESKTOP-3I41N36)-[~/.git/Github_Projekti/W3Schools_Exercises]
+└─$ git push
+fatal: The current branch training has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin training
+
+┌──(svale㉿DESKTOP-3I41N36)-[~/.git/Github_Projekti/W3Schools_Exercises]
+└─$ git push --set-upstream origin training                                                                                                                     128 ⨯
+Username for 'https://github.com': nsvali00
+Password for 'https://nsvali00@github.com':
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 371 bytes | 185.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'training' on GitHub by visiting:
+remote:      https://github.com/nsvali00/W3Schools_Exercises/pull/new/training
+remote:
+To https://github.com/nsvali00/W3Schools_Exercises.git
+ * [new branch]      training -> training
+Branch 'training' set up to track remote branch 'training' from 'origin'.
+
+**** prikaz trenutne grane ****
+──(svale㉿DESKTOP-3I41N36)-[~/.git/Github_Projekti/W3Schools_Exercises]
+└─$ git branch --list
+  main
+* training
+
+┌──(svale㉿DESKTOP-3I41N36)-[~/.git/Github_Projekti/W3Schools_Exercises]
+└─$ git checkout main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+
+┌──(svale㉿DESKTOP-3I41N36)-[~/.git/Github_Projekti/W3Schools_Exercises]
+└─$ git branch --list
+* main
+  training
+
+  **** pushanje sadrzaja jedne grane u master (main) ****
+  ┌──(svale㉿DESKTOP-3I41N36)-[~/.git/Github_Projekti/W3Schools_Exercises]
+└─$ git merge training
+Updating e20211b..61c6b0a
+Fast-forward
+ training.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 training.txt
+
+┌──(svale㉿DESKTOP-3I41N36)-[~/.git/Github_Projekti/W3Schools_Exercises]
+└─$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+┌──(svale㉿DESKTOP-3I41N36)-[~/.git/Github_Projekti/W3Schools_Exercises]
+└─$ git push
+Username for 'https://github.com': nsvali00
+Password for 'https://nsvali00@github.com':
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/nsvali00/W3Schools_Exercises.git
+   e20211b..61c6b0a  main -> main
+
+
+**** brisanje grane nakon koristenja ****
+┌──(svale㉿DESKTOP-3I41N36)-[~/.git/Github_Projekti/W3Schools_Exercises]
+└─$ git branch -d training
+Deleted branch training (was 61c6b0a).
+
