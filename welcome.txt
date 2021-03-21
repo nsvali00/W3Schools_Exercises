@@ -2,3 +2,5 @@ My first commit using terminal on Linux
 Welcome everyone to Java coding
 My name is Nikola hope you will find interesting code here
 Let the learning begin
+
+This message is to test amend
